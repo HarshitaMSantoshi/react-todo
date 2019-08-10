@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import styles from "./style.module.css";
 
 class Footer extends Component {
-  state= {
+  state = {
     currentTodo: ""
   }
+  id = 0;
 
   setCurrentTodo = e => {
     this.setState({
@@ -15,14 +16,28 @@ class Footer extends Component {
   onTodoSave = () => {
     const { currentTodo } = this.state;
     const { onSave } = this.props;
+    if(currentTodo.trim().length === 0)
+    {
+      return;
+    }
     const obj = {
+      id: this.id,
       text: currentTodo,
-      status: "active"
+      isCompleted: false
     };
+    this.id++;
     onSave(obj);
     this.setState({
       currentTodo: ""
     })
+  }
+
+  onKeyDown = e => {
+    if (e.keyCode !== 13) {
+      return;
+    }
+    e.preventDefault();
+    this.onTodoSave();
   }
 
   render() {
@@ -34,7 +49,8 @@ class Footer extends Component {
           value={currentTodo}
           className={styles.todoInput}
           placeholder="Add new task..."
-          onChange={e => this.setCurrentTodo(e)}
+          onChange={this.setCurrentTodo}
+          onKeyDown={this.onKeyDown}
         />
         <button
           className={styles.todoSubmitButton}

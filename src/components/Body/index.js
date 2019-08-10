@@ -1,8 +1,9 @@
 import React from "react";
 import EmptyTodo from "../../assets/images/empty_todo.svg";
+import DeleteIcon from "../../assets/images/delete_icon.svg";
 import styles from "./style.module.css";
 
-const Body = ({ todoList }) => {
+const Body = ({ todoList, onToggle, onDelete}) => {
   return (
     <div
       className={`${styles.bodyContainer} ${
@@ -19,13 +20,22 @@ const Body = ({ todoList }) => {
         </div>
       )}
       {todoList.length > 0 &&
-        todoList.map((el, index) => (
-          <div key={index} className={`${styles.todoItem} ${styles.todoActive}`}>
+        todoList.map((todo, index) => (
+          <div
+            key={todo.id}
+            className={`${styles.todoItem} ${
+              todo.isCompleted ? `${styles.todoComplete}` : `${styles.todoActive}`
+            }`}
+          >
             <input
               className={styles.toggle}
               type="checkbox"
+              name={todo.id}
+              checked={todo.isCompleted}
+              onChange={onToggle}
             />
-            {el.text}
+            {todo.text}
+            {todo.isCompleted && <img src={DeleteIcon} alt="icon" className={styles.todoDelete} onClick={()=>onDelete(todo.id)} />}
           </div>
         ))}
     </div>
