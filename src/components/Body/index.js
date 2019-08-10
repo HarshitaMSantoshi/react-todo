@@ -4,7 +4,11 @@ import styles from "./style.module.css";
 
 const Body = ({ todoList }) => {
   return (
-    <div className={`${styles.bodyContainer} ${todoList.length>0 ? '' : styles.emptyBody}`}>
+    <div
+      className={`${styles.bodyContainer} ${
+        todoList.length > 0 ? "" : styles.emptyBody
+      }`}
+    >
       {todoList.length === 0 && (
         <div className={styles.emptyContainer}>
           <img src={EmptyTodo} alt="empty-todo" />
@@ -15,7 +19,15 @@ const Body = ({ todoList }) => {
         </div>
       )}
       {todoList.length > 0 &&
-        todoList.map((el, index) => <div key={index}>{el.text}</div>)}
+        todoList.map((el, index) => (
+          <div key={index} className={`${styles.todoItem} ${styles.todoActive}`}>
+            <input
+              className={styles.toggle}
+              type="checkbox"
+            />
+            {el.text}
+          </div>
+        ))}
     </div>
   );
 };

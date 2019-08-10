@@ -1,22 +1,69 @@
 .body-container {
     height: 400px;
-    border-left: 2px solid #DAE0FB;
-    border-right: 2px solid #DAE0FB;
-}
-.empty-body{
+    border-left: 2px solid #dae0fb;
+    border-right: 2px solid #dae0fb;
+    overflow-y: auto;
+  }
+  .empty-body {
     display: flex;
     justify-content: center;
-}
-.empty-container {
+  }
+  .empty-container {
     align-self: center;
     align-items: center;
     display: flex;
     flex-direction: column;
-}
-.empty-container-main-text {
+  }
+  .empty-container-main-text {
     font-size: 16px;
     font-weight: 500;
-}
-.empty-container-sub-text {
+  }
+  .empty-container-sub-text {
     font-size: 14px;
-}
+  }
+  .todo-item {
+    font-size: 20px;
+    padding: 15px 0;
+    margin-left: 15px;
+  }
+  .toggle {
+    appearance: none;
+    background: none;
+    border-radius: 50%;
+    outline: 0;
+    cursor: pointer;
+    height: 22px;
+    margin: auto 0;
+    text-align: center;
+    top: 0;
+    width: 22px;
+    margin-right: 10px;
+  }
+  .todo-active {
+      background: url(../../assets/images/blank_checkbox.svg);
+      background-repeat: no-repeat;
+      background-position: center left;
+  }
+  
+  /* Scrollbar related css */
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #ebeef2;
+    border-radius: 12px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ebeef2;
+  }
+  
